@@ -1,0 +1,19 @@
+{
+  "name": "Metadata Remote",
+  "short_name": "mdrm",
+  "description": "Intelligent audio metadata editor",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#303446",
+  "theme_color": "#303446",
+  "icons": [
+    {
+      "src": "/static/mdrm-logo-dark-theme.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
