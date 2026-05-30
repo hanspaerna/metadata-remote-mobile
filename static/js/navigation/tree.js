@@ -257,9 +257,7 @@
         rebuildChildren(path, container, level) {
             container.innerHTML = '';
             
-            // Apply filtering first
-            const filteredItems = this.filterTreeItems(State.treeData[path] || [], State.foldersFilter);
-            const sortedItems = this.sortItems(filteredItems);
+            const sortedItems = this.sortItems(State.treeData[path] || []);
             
             sortedItems.forEach(item => {
                 if (item.type === 'folder') {
@@ -333,9 +331,7 @@
             };
             
             if (State.treeData[item.path] && State.treeData[item.path].length > 0 && State.expandedFolders.has(item.path)) {
-                // Apply filtering to children
-                const filteredChildren = this.filterTreeItems(State.treeData[item.path], State.foldersFilter);
-                const sortedItems = this.sortItems(filteredChildren);
+                const sortedItems = this.sortItems(State.treeData[item.path]);
                 sortedItems.forEach(child => {
                     if (child.type === 'folder') {
                         children.appendChild(this.createTreeItem(child, level + 1));
@@ -359,9 +355,7 @@
                 const data = await API.loadTreeChildren(path);
                 State.treeData[path] = data.items;
                 
-                // Apply filtering
-                const filteredItems = this.filterTreeItems(data.items, State.foldersFilter);
-                const sortedItems = this.sortItems(filteredItems);
+                const sortedItems = this.sortItems(data.items);
                 
                 sortedItems.forEach(item => {
                     if (item.type === 'folder') {

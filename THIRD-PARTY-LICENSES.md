@@ -1,4 +1,4 @@
-# Third-Party Licenses
+sudo chattr -i /mnt/nfs_share/punkify/phobiarecords/cry-havoc-a-feast-for-the-crows-lp/*# Third-Party Licenses
 
 This project uses the following third-party library:
 
