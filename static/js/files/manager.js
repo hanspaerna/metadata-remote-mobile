@@ -322,9 +322,10 @@
                 fileInfo.className = 'file-info';
                 
                 const nameDiv = document.createElement('div');
-                const formatEmoji = UIUtils.getFormatEmoji(file.name);
-                const musicIcon = document.createTextNode(formatEmoji + ' ');
-                nameDiv.appendChild(musicIcon);
+                const iconSpan = document.createElement('span');
+                iconSpan.className = 'file-type-icon';
+                iconSpan.innerHTML = UIUtils.getFormatIcon(file.name);
+                nameDiv.appendChild(iconSpan);
                 nameDiv.appendChild(document.createTextNode(file.name));
                 
                 // Add format badge
@@ -359,7 +360,7 @@
                 
                 const playButton = document.createElement('div');
                 playButton.className = 'play-button';
-                playButton.innerHTML = '<span class="play-icon">▶</span><span class="pause-icon">❚❚</span><span class="play-spinner"></span>';
+                playButton.innerHTML = '<span class="play-icon"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><polygon points="5,3 19,12 5,21"/></svg></span><span class="pause-icon"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></span><span class="play-spinner"></span>';
                 
                 const isWMA = file.name.toLowerCase().endsWith('.wma');
                 

@@ -81,24 +81,12 @@
         },
     
         /**
-         * Get emoji icon for file format
-         * @param {string} filename - The filename
-         * @returns {string} Emoji character
+         * Get SVG icon for audio file
+         * @param {string} filename - The filename (unused – single icon for all audio)
+         * @returns {string} SVG markup string
          */
-        getFormatEmoji(filename) {
-            const ext = filename.split('.').pop().toLowerCase();
-            const FORMAT_EMOJIS = {
-                'mp3': '🎵',
-                'flac': '💿',
-                'm4a': '🎶',
-                'm4b': '📚',
-                'wav': '🌊',
-                'wma': '🪟',
-                'wv': '📦',
-                'ogg': '🎼',
-                'opus': '🎹'
-            };
-            return FORMAT_EMOJIS[ext] || '🎵';
+        getFormatIcon(filename) {
+            return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>';
         },
     
         /**
@@ -117,16 +105,8 @@
             
             // Check for audiobook format
             const isAudiobook = ext === 'M4B';
-            
-            let badgeHtml = `<span style="
-                font-size: 0.7rem;
-                padding: 0.2rem 0.4rem;
-                border-radius: 4px;
-                background: ${isAudiobook ? 'rgba(139, 92, 246, 0.2)' : (isLossless ? 'rgba(74, 222, 128, 0.2)' : 'rgba(255, 169, 77, 0.2)')};
-                color: ${isAudiobook ? '#8b5cf6' : (isLossless ? '#4ade80' : '#ffa94d')};
-                margin-left: 0.5rem;
-                font-weight: 500;
-            ">${ext}</span>`;
+            let typeClass = isAudiobook ? 'audiobook' : (isLossless ? 'lossless' : 'lossy');
+            let badgeHtml = `<span class="format-badge format-badge--${typeClass}">${ext}</span>`;
             
             if (hasLimitations) {
                 const limitations = [];

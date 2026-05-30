@@ -285,7 +285,9 @@
             
             const icon = document.createElement('span');
             icon.className = 'tree-icon';
-            icon.innerHTML = State.expandedFolders.has(item.path) ? '📂' : '📁';
+            const ICON_CLOSED = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>';
+            const ICON_OPEN  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M5 19a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4l2 3h7a2 2 0 0 1 2 2v2"/><path d="M2 19l2-7h16l-2 7H2z"/></svg>';
+            icon.innerHTML = State.expandedFolders.has(item.path) ? ICON_OPEN : ICON_CLOSED;
             
             const name = document.createElement('span');
             name.textContent = item.name;
@@ -315,11 +317,11 @@
                     }
                     children.classList.add('expanded');
                     State.expandedFolders.add(item.path);
-                    icon.innerHTML = '📂';
+                    icon.innerHTML = ICON_OPEN;
                 } else {
                     children.classList.remove('expanded');
                     State.expandedFolders.delete(item.path);
-                    icon.innerHTML = '📁';
+                    icon.innerHTML = ICON_CLOSED;
                 }
             };
             
@@ -340,7 +342,7 @@
                     }
                 });
                 children.classList.add('expanded');
-                icon.innerHTML = '📂';
+                icon.innerHTML = ICON_OPEN;
             }
             
             return div;

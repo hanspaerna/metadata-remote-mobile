@@ -49,11 +49,11 @@
                 <span>Folders <span class="file-count" id="folder-count">(0)</span></span>
                 <div class="icon-controls">
                     <button class="control-icon" id="folders-filter-btn" title="Filter folders (/)" tabindex="0">
-                        🔍
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     </button>
                     <div class="sort-controls">
                         <button class="control-icon sort-field-btn" id="folders-sort-btn" title="Sort by: Name" tabindex="0">
-                            ↕️
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="21" y1="10" x2="7" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="21" y1="18" x2="7" y2="18"/></svg>
                         </button>
                         <button class="control-icon sort-direction-btn" id="folders-sort-direction" title="Click to reverse order" tabindex="0">
                             <span class="sort-indicator" id="folders-sort-indicator">▲</span>
@@ -81,11 +81,11 @@
                 <span>Files <span class="file-count" id="file-count">(0)</span></span>
                 <div class="icon-controls">
                     <button class="control-icon" id="files-filter-btn" title="Filter files (/)" tabindex="0">
-                        🔍
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                     </button>
                     <div class="sort-controls">
                         <button class="control-icon sort-field-btn" id="files-sort-btn" title="Sort by: Name" tabindex="0">
-                            ↕️
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="21" y1="10" x2="7" y2="10"/><line x1="21" y1="6" x2="3" y2="6"/><line x1="21" y1="14" x2="3" y2="14"/><line x1="21" y1="18" x2="7" y2="18"/></svg>
                         </button>
                         <button class="control-icon sort-direction-btn" id="files-sort-direction" title="Click to reverse order" tabindex="0">
                             <span class="sort-indicator" id="files-sort-indicator">▲</span>
@@ -269,6 +269,43 @@
         </div>
     </div>
     
+    <!-- Mobile bottom navigation -->
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+        <button class="mobile-nav-btn active" data-pane="folders"
+                onclick="window.MetadataRemote.MobileNav&&window.MetadataRemote.MobileNav.switchPane('folders')">
+            <span class="nav-icon">
+                <!-- Folder -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                </svg>
+            </span>
+            <span>Folders</span>
+        </button>
+        <button class="mobile-nav-btn" data-pane="files"
+                onclick="window.MetadataRemote.MobileNav&&window.MetadataRemote.MobileNav.switchPane('files')">
+            <span class="nav-icon">
+                <!-- Music note -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5l12-2v13"/>
+                    <circle cx="6" cy="18" r="3"/>
+                    <circle cx="18" cy="16" r="3"/>
+                </svg>
+            </span>
+            <span>Files</span>
+        </button>
+        <button class="mobile-nav-btn" data-pane="metadata"
+                onclick="window.MetadataRemote.MobileNav&&window.MetadataRemote.MobileNav.switchPane('metadata')">
+            <span class="nav-icon">
+                <!-- Pencil -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+            </span>
+            <span>Edit</span>
+        </button>
+    </nav>
+
     <!-- Hidden audio player -->
     <audio id="audio-player"></audio>
 
@@ -466,5 +503,8 @@
   
     <!-- Main application -->
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+    <!-- Mobile navigation -->
+    <script src="{{ url_for('static', filename='js/ui/mobile-nav.js') }}"></script>
 </body>
 </html>
