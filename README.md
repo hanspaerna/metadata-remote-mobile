@@ -10,6 +10,7 @@ This fork enhances the original with a responsive UI that works great on phones 
 - SVG icons everywhere — no emoji, clean at any resolution
 - Flat design: no gradient backgrounds or shadows
 - Touch-friendly: larger tap targets, 16 px inputs, bottom navigation bar
+- Added an image upload by URL feature by tknoeny (https://github.com/wow-signal-dev/metadata-remote/pull/48)
 
 ---
 
