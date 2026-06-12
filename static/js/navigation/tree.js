@@ -257,9 +257,7 @@
         rebuildChildren(path, container, level) {
             container.innerHTML = '';
             
-            // Apply filtering first
-            const filteredItems = this.filterTreeItems(State.treeData[path] || [], State.foldersFilter);
-            const sortedItems = this.sortItems(filteredItems);
+            const sortedItems = this.sortItems(State.treeData[path] || []);
             
             sortedItems.forEach(item => {
                 if (item.type === 'folder') {
@@ -285,7 +283,9 @@
             
             const icon = document.createElement('span');
             icon.className = 'tree-icon';
-            icon.innerHTML = State.expandedFolders.has(item.path) ? '📂' : '📁';
+            const ICON_CLOSED = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>';
+            const ICON_OPEN  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M5 19a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4l2 3h7a2 2 0 0 1 2 2v2"/><path d="M2 19l2-7h16l-2 7H2z"/></svg>';
+            icon.innerHTML = State.expandedFolders.has(item.path) ? ICON_OPEN : ICON_CLOSED;
             
             const name = document.createElement('span');
             name.textContent = item.name;
@@ -315,11 +315,11 @@
                     }
                     children.classList.add('expanded');
                     State.expandedFolders.add(item.path);
-                    icon.innerHTML = '📂';
+                    icon.innerHTML = ICON_OPEN;
                 } else {
                     children.classList.remove('expanded');
                     State.expandedFolders.delete(item.path);
-                    icon.innerHTML = '📁';
+                    icon.innerHTML = ICON_CLOSED;
                 }
             };
             
@@ -331,16 +331,14 @@
             };
             
             if (State.treeData[item.path] && State.treeData[item.path].length > 0 && State.expandedFolders.has(item.path)) {
-                // Apply filtering to children
-                const filteredChildren = this.filterTreeItems(State.treeData[item.path], State.foldersFilter);
-                const sortedItems = this.sortItems(filteredChildren);
+                const sortedItems = this.sortItems(State.treeData[item.path]);
                 sortedItems.forEach(child => {
                     if (child.type === 'folder') {
                         children.appendChild(this.createTreeItem(child, level + 1));
                     }
                 });
                 children.classList.add('expanded');
-                icon.innerHTML = '📂';
+                icon.innerHTML = ICON_OPEN;
             }
             
             return div;
@@ -357,9 +355,7 @@
                 const data = await API.loadTreeChildren(path);
                 State.treeData[path] = data.items;
                 
-                // Apply filtering
-                const filteredItems = this.filterTreeItems(data.items, State.foldersFilter);
-                const sortedItems = this.sortItems(filteredItems);
+                const sortedItems = this.sortItems(data.items);
                 
                 sortedItems.forEach(item => {
                     if (item.type === 'folder') {

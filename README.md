@@ -1,3 +1,18 @@
+# metadata-remote-mobile
+
+> **A fork of [Metadata Remote](https://github.com/wow-signal-dev/metadata-remote) with a focus on a clean, mobile-friendly experience.**
+
+This fork enhances the original with a responsive UI that works great on phones and tablets — edit your audio metadata from any device without pinching and zooming. It also ships Catppuccin theming (Frappé dark / Latte light) and replaces all emoji icons with clean SVG icons throughout the interface.
+
+**Changes over upstream:**
+- Mobile-first responsive layout: folder/file/metadata panes become swipeable tabs on small screens
+- Catppuccin Frappé (dark) and Latte (light) colour themes
+- SVG icons everywhere — no emoji, clean at any resolution
+- Flat design: no gradient backgrounds or shadows
+- Touch-friendly: larger tap targets, 16 px inputs, bottom navigation bar
+
+---
+
 # <img src="screenshots/mdrm-icon-for-light-bg.svg" alt="Alt Text" width="25" height="21"> Metadata Remote (mdrm) v1.2.0
 
 Web-based audio metadata editor for headless servers.
@@ -14,7 +29,7 @@ Need to edit audio metadata on a headless server? Until now you had to either us
 
 ```bash
 # Download docker-compose.yml
-wget https://raw.githubusercontent.com/wow-signal-dev/metadata-remote/main/docker-compose.yml
+wget https://raw.githubusercontent.com/2TAP2B/metadata-remote-mobile/main/docker-compose.yml
 
 # Edit your music directory path
 nano docker-compose.yml  # Change /path/to/your/music:/music

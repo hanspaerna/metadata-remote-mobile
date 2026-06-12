@@ -152,6 +152,19 @@ def sanitize_log_data(data):
 def index():
     return render_template('index.html')
 
+@app.route('/sw.js')
+def service_worker():
+    response = app.send_static_file('sw.js')
+    response.headers['Content-Type'] = 'application/javascript'
+    response.headers['Service-Worker-Allowed'] = '/'
+    return response
+
+@app.route('/manifest.json')
+def manifest():
+    response = app.send_static_file('manifest.json')
+    response.headers['Content-Type'] = 'application/manifest+json'
+    return response
+
 @app.route('/health')
 def health_check():
     """Health check endpoint for monitoring and load balancer checks"""
