@@ -60,7 +60,7 @@ from core.history import (
 )
 
 from core.inference import inference_engine
-from core.file_utils import validate_path, fix_file_ownership, get_file_format
+from core.file_utils import validate_path, get_file_format
 from core.metadata.normalizer import normalize_metadata_tags, get_metadata_field_mapping
 from core.metadata.reader import read_metadata, get_format_limitations
 from core.metadata.writer import apply_metadata_to_file
@@ -411,8 +411,7 @@ def rename_file():
         
         # Rename file
         os.rename(old_path, new_path)
-        fix_file_ownership(new_path)
-        
+
         # Update all history references to use the new filename
         history.update_file_references(old_path, new_path)
         
@@ -477,8 +476,7 @@ def rename_folder():
         
         # Rename folder
         os.rename(old_path, new_path)
-        fix_file_ownership(new_path)
-        
+
         # Update history references for all files in the renamed folder
         for old_file_path in old_files:
             # Calculate new file path

@@ -22,7 +22,7 @@ import os
 import logging
 
 from config import FORMAT_METADATA_CONFIG, logger
-from core.file_utils import get_file_format, fix_file_ownership
+from core.file_utils import get_file_format
 from core.metadata.mutagen_handler import mutagen_handler
 
 
@@ -84,9 +84,6 @@ def apply_metadata_to_file(filepath, new_tags, art_data=None, remove_art=False):
         # For OGG/Opus, re-write preserved album art if needed
         if base_format in ['ogg', 'opus'] and art_data and not remove_art and 'art' not in new_tags:
             mutagen_handler.write_album_art(filepath, art_data)
-        
-        # Fix file ownership
-        fix_file_ownership(filepath)
         
         logger.info(f"Successfully updated {os.path.basename(filepath)}")
     
